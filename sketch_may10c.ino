@@ -20,13 +20,20 @@ for(int k=0;k<NUMBER_OF_LEDS;k++){
 }
 }
 /*bool LedIsOn;*/
+int CurrBtn;
+int LastBtn;
 void loop() {
   // put your main code here, to run repeatedly:
-  if(digitalRead(BtnsPin[NUMBER_OF_LEDS])==LOW){
+  CurrBtn=digitalRead(BtnsPin);
+  /*if(digitalRead(BtnsPin[NUMBER_OF_LEDS])==LOW){
     ToggleLed(0);
     ToggleLed(1);
     while(digitalRead(BtnsPin[NUMBER_OF_LEDS])==LOW){delay(50);}
+  }*/
+  if((CurrBtn==LOW) && (LastBtn==HIGH)){
+    ToggleLed(0);
   }
+  LastBtn=CurrBtn;
 }
 void ToggleLed(int chnl){
   if(LedIsOn[chnl]){
